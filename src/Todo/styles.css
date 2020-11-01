@@ -1,6 +1,31 @@
-.todo_list {
+.todo__list {
 	list-style: none;
 }
+.todo__content {
+	display: flex;
+}
+
+.todo__icons {
+	display: flex;
+	cursor: pointer;
+	margin: 10px;
+}
+
 .todo_list_done {
 	text-decoration: line-through;
+}
+.todo__modal {
+	padding: 20px;
+	border: 1px solid black;
+}
+.todo__modal_header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 40px;
+}
+
+.todo__modal_body {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
 }
