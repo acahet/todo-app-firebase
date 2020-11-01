@@ -5,11 +5,7 @@ export const getTodosFromDb = (collection, setState) => {
 	db.collection(collection)
 		.orderBy('timestamp', 'desc')
 		.onSnapshot((snapshot) => {
-			console.log(
-				'snapshot.docs.map(doc => doc.data().todo) ',
-				snapshot.docs.map((doc) => doc.data())
-			);
-			setState(snapshot.docs.map((doc) => doc.data().todo));
+			setState(snapshot.docs.map((doc) => ({id: doc.id, todo: doc.data().todo})));
 		});
 };
 
