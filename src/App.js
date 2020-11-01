@@ -2,24 +2,41 @@ import './App.css';
 import { PageHeader } from '@workday/canvas-kit-react-page-header';
 import TextInput from '@workday/canvas-kit-react-text-input';
 import FormField from '@workday/canvas-kit-react-form-field';
+import Card from '@workday/canvas-kit-react-card';
 import { Button } from '@workday/canvas-kit-react-button';
 import { useState } from 'react';
 function App() {
-  
+	const [todos, setTodos] = useState([]);
+	const [input, setInput] = useState('');
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setTodos([...todos, input]);
+		setInput('');
+	};
 	return (
 		<div className="app">
 			<PageHeader title="ToDo APP" />
-			<FormField
-				label="My Field"
-				inputId="my-input-field"
-				hintText="Please add a todo"
-				hintId="my-input-field-error"
-				error={FormField.ErrorType.Error}
-			>
-				<TextInput placeholder="Placeholder" value="value" onChange={() => {}} />
-				<Button size={Button.Size.Small}>Small Button</Button>
-			</FormField>
-			
+			<div className="app__form">
+				<FormField label="Add TODO">
+					<div className="app__form_input">
+						<TextInput placeholder="Enter TODO" value={input} onChange={(e) => setInput(e.target.value)} />
+					</div>
+					<div>
+						<Button size={Button.Size.Small} onClick={handleSubmit} disabled={!input}>
+							Add Todo
+						</Button>
+					</div>
+				</FormField>
+			</div>
+			<Card>
+				{todos.map((todo) => {
+					return (
+						<li className="app_todo_list" key={todo}>
+							{todo}
+						</li>
+					);
+				})}
+			</Card>
 		</div>
 	);
 }
