@@ -4,15 +4,27 @@ import TextInput from '@workday/canvas-kit-react-text-input';
 import FormField from '@workday/canvas-kit-react-form-field';
 
 import { Button } from '@workday/canvas-kit-react-button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Todo from './Todo';
 import Card from '@workday/canvas-kit-react-card';
+import { db } from './firebase';
+import { getTodosFromDb, addToCollection } from './helpers/api';
 function App() {
 	const [todos, setTodos] = useState([]);
 	const [input, setInput] = useState('');
+
+	// app loads-> listen to db -> fetch new todos as they are added/removed
+	//runs once the apps loads
+	//useEffect(arrow function/dependencies) - this fires when app loads
+	//runs once when app load if [] is left empty
+	//[input] -> once a new todo is added it will fire
+	useEffect(() => {
+		getTodosFromDb('todos', setTodos);
+	}, []);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setTodos([...todos, input]);
+		addToCollection('todos', 'todo', input);
 		setInput('');
 	};
 	return (
@@ -32,7 +44,7 @@ function App() {
 			</div>
 			<Card>
 				{todos.map((todo) => {
-					return <Todo todo={todo} />;
+					return <Todo key={todo} todo={todo} />;
 				})}
 			</Card>
 		</div>
