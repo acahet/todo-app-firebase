@@ -2,7 +2,7 @@ import './App.css';
 import { PageHeader } from '@workday/canvas-kit-react-page-header';
 import TextInput from '@workday/canvas-kit-react-text-input';
 import FormField from '@workday/canvas-kit-react-form-field';
-import Card from '@workday/canvas-kit-react-card';
+
 import { Button } from '@workday/canvas-kit-react-button';
 import { useState } from 'react';
 function App() {
