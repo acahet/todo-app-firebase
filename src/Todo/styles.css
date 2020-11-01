@@ -1,0 +1,6 @@
+.todo_list {
+	list-style: none;
+}
+.todo_list_done {
+	text-decoration: line-through;
+}

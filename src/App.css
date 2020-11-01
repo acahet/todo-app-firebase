@@ -10,9 +10,4 @@
 	margin: 20px;
 	text-align: center;
 }
-.app_todo_list {
-	list-style: none;
-}
-.app_todo_list_done {
-	text-decoration: line-through;
-}
+

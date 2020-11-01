@@ -5,6 +5,8 @@ import FormField from '@workday/canvas-kit-react-form-field';
 
 import { Button } from '@workday/canvas-kit-react-button';
 import { useState } from 'react';
+import Todo from './Todo';
+import Card from '@workday/canvas-kit-react-card';
 function App() {
 	const [todos, setTodos] = useState([]);
 	const [input, setInput] = useState('');
@@ -30,11 +32,7 @@ function App() {
 			</div>
 			<Card>
 				{todos.map((todo) => {
-					return (
-						<li className="app_todo_list" key={todo}>
-							{todo}
-						</li>
-					);
+					return <Todo todo={todo} />;
 				})}
 			</Card>
 		</div>
